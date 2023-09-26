@@ -1,7 +1,6 @@
 const result = document.getElementById('result-container')
 const questionContainer = document.getElementById('question-container')
 const form = document.getElementById('quiz-form')
-
 let quizData
 let currentQuestionIndex = 0
 let correct, wrong, userlength
@@ -75,16 +74,28 @@ function displayQuestion(questionIndex) {
     .join('')}
 </div>
           </ul>
-          <button type="button" onclick="checkAnswer(${questionIndex})">Submit</button>
+          <div id="feedback-container" class="feedback"></div>
+          <button type="button" id="btn" onclick="checkAnswer(${questionIndex})">Submit</button>
+          <button type="button" id="btn2" onclick="displayNextQuestion()">Next</button>
+
         `
   questionContainer.innerHTML = questionHTML
   currentQuestionIndex = questionIndex
 }
 
+function displayFeedback(message, color) {
+  const feedbackContainer = document.getElementById('feedback-container')
+  feedbackContainer.textContent = message
+  feedbackContainer.style.color = color
+}
 function checkAnswer(questionIndex) {
   const selectedAnswerText = document.querySelector(
     'input[name="answer"]:checked + label'
   ).textContent
+
+  const selectedAnswerElement = document.querySelector(
+    'input[name="answer"]:checked + label'
+  )
 
   // Now selectedAnswerText will contain the text of the selected option.
 
@@ -97,18 +108,38 @@ function checkAnswer(questionIndex) {
   const correctAnswerText = quizData[questionIndex].options.find(
     (option) => option.correct
   ).text
+  const correctAnswerOption = quizData[questionIndex].options.find(
+    (option) => option.correct
+  )
+
+  document.getElementById('btn2').style.display = 'block'
+  document.getElementById('btn').style.display = 'none'
 
   if (selectedAnswerText === correctAnswerText) {
     correct++
-    alert('Correct answer!')
+    selectedAnswerElement.classList.add('correct')
+    // displayFeedback('Correct answer!', 'green')
   } else {
     wrong++
-    alert('Wrong answer. Correct Answer : ' + correctAnswerText)
+    selectedAnswerElement.classList.add('incorrect')
+
+    const allLabels = document.querySelectorAll('label')
+    for (const label of allLabels) {
+      if (label.textContent === correctAnswerText) {
+        label.classList.add('correct')
+        break // Stop searching after finding the correct label
+      }
+    }
+    // Highlight the correct answer as well
+
+    // displayFeedback(`Wrong answer. Correct Answer: ${correctAnswerText}`, 'red')
   }
-  displayNextQuestion()
 }
 
 function displayNextQuestion() {
+  document.getElementById('btn').style.display = 'block'
+  document.getElementById('btn2').style.display = 'none'
+
   if (currentQuestionIndex < userlength - 1) {
     displayQuestion(currentQuestionIndex + 1)
   } else {
@@ -119,10 +150,10 @@ function displayNextQuestion() {
               <h3>Score :  ${correct} / ${correct + wrong} </h3>
               <h3 id="res">Correct : ${correct}</h3>
               <h3 id="res">Wrong : ${wrong}</h3>
-              <button type="button" onclick="startAgain()">Start Again</button>
+              <button type="button" class="btncss" onclick="startAgain()">Start Again</button>
     `
     result.innerHTML = innerHTML
-    alert('No more questions.')
+    // alert('No more questions.')
   }
 }
 
