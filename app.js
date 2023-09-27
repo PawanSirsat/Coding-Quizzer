@@ -145,6 +145,7 @@ function displayNextQuestion() {
   } else {
     document.getElementById('question-container').style.display = 'none'
     result.style.display = 'block'
+    win()
     const innerHTML = `
               <h2>Quiz completed!</h2>
               <h3>Score :  ${correct} / ${correct + wrong} </h3>

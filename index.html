@@ -3,49 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Programming Quiz</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
   </head>
   <body>
-    <div class="container">
-      <h1>Programming Quiz</h1>
-      <form id="quiz-form">
-        <select id="language" name="language">
-          <option value="none" selected disabled hidden>
-            Select a Programming Language
-          </option>
-          <option value="javascript">JavaScript</option>
-          <option value="python">Python</option>
-          <option value="java">Java</option>
-
-          <!-- Add more language options as needed -->
-        </select>
-
-        <select id="quiz-type" name="quiz-type">
-          <option value="none" selected disabled hidden>
-            Select Quiz Type
-          </option>
-          <option value="3">3 Questions</option>
-          <option value="5">5 Questions</option>
-          <option value="10">10 Questions</option>
-        </select>
-
-        <select id="difficulty" name="difficulty">
-          <option value="none" selected disabled hidden>
-            Select Difficulty
-          </option>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-
-        <button type="submit" id="start">Start Quiz</button>
-      </form>
-
-      <div id="question-container"></div>
-      <div id="result-container"></div>
+    <div class="topnav" id="myTopnav">
+      <a href="#home" class="active">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
     </div>
+
+    <div class="container">
+      <div class="center-container">
+        <h1>Programming Quiz</h1>
+        <form id="quiz-form">
+          <select id="language" name="language">
+            <option value="none" selected disabled hidden>
+              Select a Programming Language
+            </option>
+            <option value="javascript">JavaScript</option>
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+
+            <!-- Add more language options as needed -->
+          </select>
+
+          <select id="quiz-type" name="quiz-type">
+            <option value="none" selected disabled hidden>
+              Select Quiz Type
+            </option>
+            <option value="3">3 Questions</option>
+            <option value="5">5 Questions</option>
+            <option value="10">10 Questions</option>
+          </select>
+
+          <select id="difficulty" name="difficulty">
+            <option value="none" selected disabled hidden>
+              Select Difficulty
+            </option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <input type="submit" id="start" value="Start Quizz" />
+        </form>
+
+        <div id="question-container"></div>
+        <div id="result-container"></div>
+      </div>
+    </div>
+
+    <script>
+      function myFunction() {
+        var x = document.getElementById('myTopnav')
+        if (x.className === 'topnav') {
+          x.className += ' responsive'
+        } else {
+          x.className = 'topnav'
+        }
+      }
+    </script>
+    <script src="./animation.js"></script>
     <script src="./app.js"></script>
-    <!-- Include your JavaScript files here -->
   </body>
 </html>
