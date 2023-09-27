@@ -14,7 +14,8 @@ h1 {
 }
 
 a {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 @media (max-width: 768px) {
@@ -24,6 +25,10 @@ a {
   li {
     font-size: 20px; /* Adjust font size for smaller screens */
   }
+}
+
+#fon {
+  font-size: 30px;
 }
 .topnav {
   overflow: hidden;
@@ -37,7 +42,7 @@ a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 .topnav a:hover {
@@ -79,49 +84,6 @@ a {
     text-align: left;
   }
 }
-/* Navbar styles */
-/* .navbar {
-  background-color: #007bff; 
-  color: #fff; 
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-}
-
-.nav-links li {
-  margin-right: 20px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #0056b3; 
-} */
 
 /* Centered container styles */
 body {
@@ -284,4 +246,20 @@ input[type='submit']:hover {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+/* Style the navbar-brand */
+.navbar-brand {
+  font-family: monospace;
+  font-size: 24px;
+  color: #9beeea;
+  text-shadow: 2px 3px 19px rgba(101, 135, 224, 0.75);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Style the emoji icons */
+.navbar-brand span {
+  margin: 0 5px;
 }
