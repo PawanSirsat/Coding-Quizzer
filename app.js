@@ -2,6 +2,7 @@ const result = document.getElementById('result-container')
 const questionContainer = document.getElementById('question-container')
 const form = document.getElementById('quiz-form')
 const sliderLabel = document.querySelector('#slidertext')
+const progressContainers = document.getElementsByClassName('progress-container')
 
 let quizData
 let currentQuestionIndex = 0
@@ -9,16 +10,13 @@ let correct, wrong, userlength
 let timeout = false
 
 // Add an event listener to the checkbox
-let timer = false
+let timer = true
 const quizSlider = document.getElementById('quiz-slider').checked
 if (quizSlider) {
   sliderLabel.textContent = 'On'
   console.log(sliderLabel.textContent)
-
   sliderLabel.classList.add('slider-label-on')
 }
-
-console.log('Slider ' + quizSlider)
 
 document.getElementById('quiz-slider').addEventListener('change', function () {
   if (this.checked) {
@@ -26,13 +24,15 @@ document.getElementById('quiz-slider').addEventListener('change', function () {
     sliderLabel.textContent = 'On'
     sliderLabel.classList.remove('slider-label-off')
     sliderLabel.classList.add('slider-label-on')
+    console.log('Timer ' + timer)
   } else {
     timer = false
+    console.log('Timer ' + timer)
     sliderLabel.textContent = 'Off'
     sliderLabel.classList.remove('slider-label-on')
     sliderLabel.classList.add('slider-label-off')
   }
-  console.log('Slider ' + quizSlider)
+  // console.log('Slider ' + quizSlider)
 })
 
 function shuffleArray(array) {
@@ -114,7 +114,17 @@ function displayQuestion(questionIndex) {
 
         `
   questionContainer.innerHTML = questionHTML
-  if (timer) {
+  console.log('Timer ' + timer)
+
+  if (!timer) {
+    for (const container of progressContainers) {
+      container.style.display = 'none'
+    }
+  } else {
+    for (const container of progressContainers) {
+      container.style.display = 'block'
+    }
+    console.log('Progress Start')
     startProgressBar()
   }
   currentQuestionIndex = questionIndex
@@ -280,8 +290,5 @@ function endQuiz() {
 document.getElementById('quiz-form').addEventListener('submit', function (e) {
   e.preventDefault()
   document.getElementById('quiz-slider').setAttribute('disabled', 'disabled')
-  if (quizSlider) {
-    timer = true
-  }
   startQuiz()
 })

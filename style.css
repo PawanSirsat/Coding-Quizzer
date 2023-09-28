@@ -3,13 +3,12 @@ body,
 h1,
 p,
 ul,
-li {
+li,
+h2,
+label {
   margin: 0;
   padding: 0;
   margin-bottom: 12px;
-}
-
-h1 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -90,12 +89,17 @@ a {
 body {
   background-color: #f0f0f0;
 }
-
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 28px;
+}
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  align-items: flex-start;
+  min-height: 78vh;
   background-color: #f0f0f0;
 }
 .center-container {
