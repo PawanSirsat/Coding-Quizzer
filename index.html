@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./progress-bar.css" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./button.css" />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -24,14 +27,20 @@
         Coding Quiz
         <span style="vertical-align: middle; font-size: 20px">🚀</span>
       </a>
-      <a href="#news">Random Quizzers</a>
+      <a href="#news">Programming Quiz</a>
       <a href="#contact">Competitive Quiz</a>
-      <a href="#about">Time-Based Quiz</a>
+      <a href="#about"
+        >Time-Based Quiz
+        <label class="switch">
+          <input type="checkbox" id="quiz-slider" />
+          <span class="slider round"></span>
+        </label>
+      </a>
+
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
     </div>
-
     <div class="container">
       <div class="center-container">
         <h1>Programming Quiz</h1>
@@ -67,7 +76,9 @@
 
           <input type="submit" id="start" value="Start Quizz" />
         </form>
-
+        <!-- <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div> -->
         <div id="question-container"></div>
         <div id="result-container"></div>
       </div>
@@ -83,6 +94,7 @@
         }
       }
     </script>
+    <script src="./progress.js"></script>
     <script src="./animation.js"></script>
     <script src="./app.js"></script>
   </body>

@@ -4,6 +4,18 @@ const form = document.getElementById('quiz-form')
 let quizData
 let currentQuestionIndex = 0
 let correct, wrong, userlength
+let timeout = false
+
+// Add an event listener to the checkbox
+let timer = false
+const quizSlider = document.getElementById('quiz-slider')
+quizSlider.addEventListener('change', function () {
+  if (this.checked) {
+    timer = true
+  } else {
+    timer = false
+  }
+})
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -49,6 +61,8 @@ function startQuiz() {
 }
 
 function displayQuestion(questionIndex) {
+  timeout = false
+
   questionContainer.style.display = 'block'
   const question = quizData[questionIndex]
 
@@ -59,9 +73,11 @@ function displayQuestion(questionIndex) {
     return
   }
   const questionHTML = `
+  <div class="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
           <h2>${question.question}</h2>
           <ul>
-           <div id="options-container">
   ${shuffledOptions
     .map(
       (option, index) => `
@@ -80,18 +96,76 @@ function displayQuestion(questionIndex) {
 
         `
   questionContainer.innerHTML = questionHTML
+  if (timer) {
+    startProgressBar()
+  }
   currentQuestionIndex = questionIndex
 }
 
-function displayFeedback(message, color) {
+function startProgressBar() {
+  const progressBar = document.getElementById('progress-bar')
+  progressBar.style.width = '0%' // Initially set to 0%
+
+  let nextButtonClicked = false // Flag to check if the "Next" button was clicked
+  const animationDuration = 10000 // 10 seconds
+  const animationSteps = 100
+  const stepWidth = 100 / animationSteps
+
+  let currentWidth = 0
+  const animationInterval = animationDuration / animationSteps
+
+  const animation = setInterval(function () {
+    currentWidth += stepWidth
+    progressBar.style.width = currentWidth + '%'
+
+    if (currentWidth >= 100) {
+      clearInterval(animation)
+      if (!nextButtonClicked) {
+        console.log('Next')
+        // If the "Next" button was not clicked, move to the next question
+        timeout = true
+        displayFeedback('Time Out', 'error')
+        checkAnswer(currentQuestionIndex)
+      }
+    }
+  }, animationInterval)
+
+  const nextButton = document.getElementById('btn2')
+  nextButton.addEventListener('click', function () {
+    nextButtonClicked = true
+    clearInterval(animation) // Stop the animation if the "Next" button is clicked
+  })
+}
+
+// Function to reset the progress bar
+// function resetProgressBar() {
+//   progressBar.style.width = '0'
+// }
+
+// Example: Start the progress bar for each quiz question
+
+// You can call startProgressBar() for each question in your quiz.
+
+function displayFeedback(message, className) {
   const feedbackContainer = document.getElementById('feedback-container')
   feedbackContainer.textContent = message
-  feedbackContainer.style.color = color
+  feedbackContainer.classList.add('feedback', className)
+  feedbackContainer.style.display = 'block'
 }
 function checkAnswer(questionIndex) {
-  const selectedAnswerText = document.querySelector(
-    'input[name="answer"]:checked + label'
-  ).textContent
+  let selectedAnswerText
+
+  const selectedRadioButton = document.querySelector(
+    'input[name="answer"]:checked'
+  )
+  if (selectedRadioButton) {
+    selectedAnswerText = selectedRadioButton.nextElementSibling.textContent
+    // Now you can use the selectedAnswerText
+    console.log(selectedAnswerText)
+  } else {
+    // Handle the case where no option is selected
+    console.log('Please select an option.')
+  }
 
   const selectedAnswerElement = document.querySelector(
     'input[name="answer"]:checked + label'
@@ -101,10 +175,6 @@ function checkAnswer(questionIndex) {
 
   console.log(selectedAnswerText)
 
-  if (!selectedAnswerText) {
-    alert('Please select an answer.')
-    return
-  }
   const correctAnswerText = quizData[questionIndex].options.find(
     (option) => option.correct
   ).text
@@ -114,15 +184,8 @@ function checkAnswer(questionIndex) {
 
   document.getElementById('btn2').style.display = 'block'
   document.getElementById('btn').style.display = 'none'
-
-  if (selectedAnswerText === correctAnswerText) {
-    correct++
-    selectedAnswerElement.classList.add('correct')
-    // displayFeedback('Correct answer!', 'green')
-  } else {
+  if (!selectedAnswerText && timeout == true) {
     wrong++
-    selectedAnswerElement.classList.add('incorrect')
-
     const allLabels = document.querySelectorAll('label')
     for (const label of allLabels) {
       if (label.textContent === correctAnswerText) {
@@ -130,9 +193,29 @@ function checkAnswer(questionIndex) {
         break // Stop searching after finding the correct label
       }
     }
-    // Highlight the correct answer as well
+  } else if (!selectedAnswerText) {
+    alert('Please select an answer.')
+    return
+  } else {
+    if (selectedAnswerText === correctAnswerText) {
+      correct++
+      selectedAnswerElement.classList.add('correct')
+      // displayFeedback('Correct answer!', 'green')
+    } else {
+      wrong++
+      selectedAnswerElement.classList.add('incorrect')
 
-    // displayFeedback(`Wrong answer. Correct Answer: ${correctAnswerText}`, 'red')
+      const allLabels = document.querySelectorAll('label')
+      for (const label of allLabels) {
+        if (label.textContent === correctAnswerText) {
+          label.classList.add('correct')
+          break // Stop searching after finding the correct label
+        }
+      }
+      // Highlight the correct answer as well
+
+      // displayFeedback(`Wrong answer. Correct Answer: ${correctAnswerText}`, 'red')
+    }
   }
 }
 
