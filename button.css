@@ -57,3 +57,31 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+/* Additional styles for the labels */
+.slider-labels {
+  position: absolute;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+  font-size: 12px;
+  pointer-events: none; /* To make sure the labels don't interfere with clicks */
+}
+
+.slider-label-on {
+  flex: 1;
+  text-align: start;
+  color: white;
+}
+
+.slider-label-off {
+  flex: 1;
+  text-align: end;
+  color: white;
+}
+
+/* Adjust the positioning of labels for the 'On' and 'Off' states */

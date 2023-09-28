@@ -1,6 +1,8 @@
 const result = document.getElementById('result-container')
 const questionContainer = document.getElementById('question-container')
 const form = document.getElementById('quiz-form')
+const sliderLabel = document.querySelector('#slidertext')
+
 let quizData
 let currentQuestionIndex = 0
 let correct, wrong, userlength
@@ -8,13 +10,29 @@ let timeout = false
 
 // Add an event listener to the checkbox
 let timer = false
-const quizSlider = document.getElementById('quiz-slider')
-quizSlider.addEventListener('change', function () {
+const quizSlider = document.getElementById('quiz-slider').checked
+if (quizSlider) {
+  sliderLabel.textContent = 'On'
+  console.log(sliderLabel.textContent)
+
+  sliderLabel.classList.add('slider-label-on')
+}
+
+console.log('Slider ' + quizSlider)
+
+document.getElementById('quiz-slider').addEventListener('change', function () {
   if (this.checked) {
     timer = true
+    sliderLabel.textContent = 'On'
+    sliderLabel.classList.remove('slider-label-off')
+    sliderLabel.classList.add('slider-label-on')
   } else {
     timer = false
+    sliderLabel.textContent = 'Off'
+    sliderLabel.classList.remove('slider-label-on')
+    sliderLabel.classList.add('slider-label-off')
   }
+  console.log('Slider ' + quizSlider)
 })
 
 function shuffleArray(array) {
@@ -108,7 +126,7 @@ function startProgressBar() {
 
   let nextButtonClicked = false // Flag to check if the "Next" button was clicked
   const animationDuration = 10000 // 10 seconds
-  const animationSteps = 100
+  const animationSteps = 250
   const stepWidth = 100 / animationSteps
 
   let currentWidth = 0
@@ -153,7 +171,11 @@ function displayFeedback(message, className) {
   feedbackContainer.style.display = 'block'
 }
 function checkAnswer(questionIndex) {
+  const progressBar = document.getElementById('progress-bar')
+  progressBar.style.width = '100%'
+
   let selectedAnswerText
+  progressBar.style.width = '0%' // Initially set to 0%
 
   const selectedRadioButton = document.querySelector(
     'input[name="answer"]:checked'
@@ -246,6 +268,8 @@ function startAgain() {
   form.reset()
   result.style.display = 'none'
   form.style.display = 'block'
+  // Enable the checkbox
+  document.getElementById('quiz-slider').removeAttribute('disabled')
 }
 
 function endQuiz() {
@@ -255,5 +279,9 @@ function endQuiz() {
 
 document.getElementById('quiz-form').addEventListener('submit', function (e) {
   e.preventDefault()
+  document.getElementById('quiz-slider').setAttribute('disabled', 'disabled')
+  if (quizSlider) {
+    timer = true
+  }
   startQuiz()
 })
