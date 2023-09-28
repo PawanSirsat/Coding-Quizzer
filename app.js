@@ -135,7 +135,7 @@ function startProgressBar() {
   progressBar.style.width = '0%' // Initially set to 0%
 
   let nextButtonClicked = false // Flag to check if the "Next" button was clicked
-  const animationDuration = 10000 // 10 seconds
+  const animationDuration = 30000 // 10 seconds
   const animationSteps = 250
   const stepWidth = 100 / animationSteps
 
