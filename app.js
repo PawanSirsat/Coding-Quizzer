@@ -235,7 +235,7 @@ function checkAnswer(questionIndex) {
     alert('Please select an answer')
     return
   } else {
-    console.log('Option selected')
+    console.log('Option selected.')
   }
 
   const selectedAnswerElement = document.querySelector(
