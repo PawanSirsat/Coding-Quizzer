@@ -153,12 +153,21 @@ function displayQuestion(questionIndex) {
   }
   currentQuestionIndex = questionIndex
 }
+function disableQuizOptions() {
+  const optionContainers = document.querySelectorAll('.option')
 
+  optionContainers.forEach(function (container) {
+    const input = container.querySelector('input[type="radio"]')
+    input.disabled = true
+
+    // Optionally, you can add a class to visually indicate that the option is disabled
+    container.classList.add('disabled-option')
+  })
+}
 function startProgressBar() {
   const progressBar = document.getElementById('progress-bar')
   progressBar.style.width = '0%' // Initially set to 0%
 
-  let selectedAnswerText
   let nextButtonClicked = false // Flag to check if the "Next" button was clicked
   const animationDuration = 30000 // 10 seconds
   const animationSteps = 250
@@ -173,7 +182,7 @@ function startProgressBar() {
 
     if (currentWidth >= 100) {
       clearInterval(animation)
-      if (!nextButtonClicked && selectedAnswerText) {
+      if (!nextButtonClicked) {
         console.log('Next')
         // If the "Next" button was not clicked, move to the next question
         timeout = true
@@ -185,11 +194,6 @@ function startProgressBar() {
 
   const nextButton = document.getElementById('btn')
   nextButton.addEventListener('click', function () {
-    const selectedRadioButton = document.querySelector(
-      'input[name="answer"]:checked'
-    )
-    selectedAnswerText = selectedRadioButton.nextElementSibling.textContent
-
     nextButtonClicked = true
     clearInterval(animation) // Stop the animation if the "Next" button is clicked
   })
@@ -229,9 +233,8 @@ function checkAnswer(questionIndex) {
     console.log('Please select an option.')
   }
 
-  if (!selectedAnswerText) {
+  if (!selectedAnswerText && timeout == false) {
     console.log(selectedAnswerText)
-
     alert('Please select an answer')
     return
   } else {
@@ -252,11 +255,12 @@ function checkAnswer(questionIndex) {
   const correctAnswerOption = quizData[questionIndex].options.find(
     (option) => option.correct
   )
-
   document.getElementById('btn2').style.display = 'block'
   document.getElementById('btn').style.display = 'none'
-  if (!selectedAnswerText && timeout == true) {
+  if (timeout == true) {
+    disableQuizOptions()
     wrong++
+    console.log('Time Out, selected, not submitted ')
     const allLabels = document.querySelectorAll('label')
     for (const label of allLabels) {
       if (label.textContent === correctAnswerText) {
@@ -268,14 +272,16 @@ function checkAnswer(questionIndex) {
     alert('Please select an answer.')
     return
   } else {
-    if (selectedAnswerText === correctAnswerText) {
+    if (selectedAnswerText === correctAnswerText && timeout == false) {
+      disableQuizOptions()
+      console.log('In Time, selected, submitted ')
       correct++
       selectedAnswerElement.classList.add('correct')
       // displayFeedback('Correct answer!', 'green')
     } else {
+      disableQuizOptions()
       wrong++
       selectedAnswerElement.classList.add('incorrect')
-
       const allLabels = document.querySelectorAll('label')
       for (const label of allLabels) {
         if (label.textContent === correctAnswerText) {
