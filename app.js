@@ -158,6 +158,7 @@ function startProgressBar() {
   const progressBar = document.getElementById('progress-bar')
   progressBar.style.width = '0%' // Initially set to 0%
 
+  let selectedAnswerText
   let nextButtonClicked = false // Flag to check if the "Next" button was clicked
   const animationDuration = 30000 // 10 seconds
   const animationSteps = 250
@@ -172,7 +173,7 @@ function startProgressBar() {
 
     if (currentWidth >= 100) {
       clearInterval(animation)
-      if (!nextButtonClicked) {
+      if (!nextButtonClicked && selectedAnswerText) {
         console.log('Next')
         // If the "Next" button was not clicked, move to the next question
         timeout = true
@@ -184,6 +185,11 @@ function startProgressBar() {
 
   const nextButton = document.getElementById('btn')
   nextButton.addEventListener('click', function () {
+    const selectedRadioButton = document.querySelector(
+      'input[name="answer"]:checked'
+    )
+    selectedAnswerText = selectedRadioButton.nextElementSibling.textContent
+
     nextButtonClicked = true
     clearInterval(animation) // Stop the animation if the "Next" button is clicked
   })
@@ -223,6 +229,15 @@ function checkAnswer(questionIndex) {
     console.log('Please select an option.')
   }
 
+  if (!selectedAnswerText) {
+    console.log(selectedAnswerText)
+
+    alert('Please select an answer')
+    return
+  } else {
+    console.log('Option selected')
+  }
+
   const selectedAnswerElement = document.querySelector(
     'input[name="answer"]:checked + label'
   )
@@ -238,6 +253,8 @@ function checkAnswer(questionIndex) {
     (option) => option.correct
   )
 
+  document.getElementById('btn2').style.display = 'block'
+  document.getElementById('btn').style.display = 'none'
   if (!selectedAnswerText && timeout == true) {
     wrong++
     const allLabels = document.querySelectorAll('label')
@@ -247,8 +264,6 @@ function checkAnswer(questionIndex) {
         break // Stop searching after finding the correct label
       }
     }
-    document.getElementById('btn2').style.display = 'block'
-    document.getElementById('btn').style.display = 'none'
   } else if (!selectedAnswerText) {
     alert('Please select an answer.')
     return
@@ -268,9 +283,6 @@ function checkAnswer(questionIndex) {
           break // Stop searching after finding the correct label
         }
       }
-
-      document.getElementById('btn2').style.display = 'block'
-      document.getElementById('btn').style.display = 'none'
       // Highlight the correct answer as well
 
       // displayFeedback(`Wrong answer. Correct Answer: ${correctAnswerText}`, 'red')
