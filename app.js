@@ -238,8 +238,6 @@ function checkAnswer(questionIndex) {
     (option) => option.correct
   )
 
-  document.getElementById('btn2').style.display = 'block'
-  document.getElementById('btn').style.display = 'none'
   if (!selectedAnswerText && timeout == true) {
     wrong++
     const allLabels = document.querySelectorAll('label')
@@ -249,6 +247,8 @@ function checkAnswer(questionIndex) {
         break // Stop searching after finding the correct label
       }
     }
+    document.getElementById('btn2').style.display = 'block'
+    document.getElementById('btn').style.display = 'none'
   } else if (!selectedAnswerText) {
     alert('Please select an answer.')
     return
@@ -268,6 +268,9 @@ function checkAnswer(questionIndex) {
           break // Stop searching after finding the correct label
         }
       }
+
+      document.getElementById('btn2').style.display = 'block'
+      document.getElementById('btn').style.display = 'none'
       // Highlight the correct answer as well
 
       // displayFeedback(`Wrong answer. Correct Answer: ${correctAnswerText}`, 'red')
