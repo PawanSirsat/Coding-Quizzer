@@ -109,12 +109,36 @@ function displayQuestion(questionIndex) {
 </div>
           </ul>
           <div id="feedback-container" class="feedback"></div>
-          <button type="button" id="btn" onclick="checkAnswer(${questionIndex})">Submit</button>
-          <button type="button" id="btn2" onclick="displayNextQuestion()">Next</button>
+          <div class="btncontainer"><button type="button" id="btn" 
+           onclick="checkAnswer(${questionIndex})">Submit</button>
+          <button type="button" id="btn2" onclick="displayNextQuestion()">Next Quiz</button>
+          <button type="button" id="btn3">Exit</button>
+          </div>
+           <div id="popup" class="popup">
+       <div class="popup-content">
+    <span class="close-button" id="closePopup">&times;</span>
+    <h2>Quiz Exit Confirmation</h2>
+    <p>If you exit, any unsaved progress will be lost.</p>
+    <button id="reloadPage">Exit Quiz</button>
+</div>
 
+    </div>
         `
   questionContainer.innerHTML = questionHTML
   console.log('Timer ' + timer)
+  document.getElementById('popup').style.display = 'none'
+
+  document.getElementById('btn3').addEventListener('click', function () {
+    document.getElementById('popup').style.display = 'flex'
+  })
+
+  document.getElementById('closePopup').addEventListener('click', function () {
+    document.getElementById('popup').style.display = 'none'
+  })
+
+  document.getElementById('reloadPage').addEventListener('click', function () {
+    location.reload()
+  })
 
   if (!timer) {
     for (const container of progressContainers) {
@@ -158,7 +182,7 @@ function startProgressBar() {
     }
   }, animationInterval)
 
-  const nextButton = document.getElementById('btn2')
+  const nextButton = document.getElementById('btn')
   nextButton.addEventListener('click', function () {
     nextButtonClicked = true
     clearInterval(animation) // Stop the animation if the "Next" button is clicked

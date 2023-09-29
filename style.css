@@ -180,25 +180,46 @@ input[type='submit']:hover {
   padding: 20px;
   margin-top: 20px;
 }
-
+.btncontainer {
+  display: inline-flex;
+}
 #btn {
   display: block;
-  background-color: #007bff;
+  background-color: #19c658;
+
   color: #fff;
   border: none;
   padding: 10px 20px;
   margin-top: 20px;
+  margin-left: 12px;
+
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 #btn2 {
   display: none;
-  background-color: #19c658;
+  background-color: #007bff;
   color: #fff;
   border: none;
   padding: 10px 20px;
   margin-top: 20px;
+  margin-left: 12px;
+
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#btn3 {
+  display: inline-block;
+  background-color: #f16868;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  margin-left: 12px;
+
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
