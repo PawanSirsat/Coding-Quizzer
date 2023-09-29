@@ -247,7 +247,7 @@ function checkAnswer(questionIndex) {
 
   // Now selectedAnswerText will contain the text of the selected option.
 
-  console.log(selectedAnswerText)
+  console.log(!selectedAnswerText && selectedAnswerText)
 
   const correctAnswerText = quizData[questionIndex].options.find(
     (option) => option.correct
