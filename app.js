@@ -255,7 +255,7 @@ function checkAnswer(questionIndex) {
 
   document.getElementById('btn2').style.display = 'block'
   document.getElementById('btn').style.display = 'none'
-  if (!selectedAnswerText && timeout == true) {
+  if (timeout == true) {
     wrong++
     const allLabels = document.querySelectorAll('label')
     for (const label of allLabels) {
