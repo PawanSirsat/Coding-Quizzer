@@ -13,6 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Generate Environment Config
+        run: |
+          echo "window.env = {" > env-config.js && \
+          echo "  FIREBASE_API_KEY: '$FIREBASE_API_KEY'," >> env-config.js && \
+          echo "  FIREBASE_AUTH_DOMAIN: '$FIREBASE_AUTH_DOMAIN'," >> env-config.js && \
+          echo "  FIREBASE_PROJECT_ID: '$FIREBASE_PROJECT_ID'," >> env-config.js && \
+          echo "  FIREBASE_STORAGE_BUCKET: '$FIREBASE_STORAGE_BUCKET'," >> env-config.js && \
+          echo "  FIREBASE_MESSAGING_SENDER_ID: '$FIREBASE_MESSAGING_SENDER_ID'," >> env-config.js && \
+          echo "  FIREBASE_APP_ID: '$FIREBASE_APP_ID'" >> env-config.js && \
+          echo "};" >> env-config.js
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
