@@ -18,6 +18,7 @@
       <a class="navbar-brand" href="#" id="fon">
         <span style="vertical-align: middle; font-size: 24px">
           <img
+            class="image-container"
             width="50"
             height="50"
             src="./images/icons8-developer-48.png"
@@ -102,6 +103,7 @@
           } else {
             x.className = 'topnav'
           }
+          document.getElementById('quiz-form').reset()
           document.getElementById('quiz-form').style.display = 'block'
           const resultContainer = document.getElementById('results-container')
           resultContainer.innerHTML = ''
@@ -129,6 +131,7 @@
     <script src="https://cdn.jsdelivr.net/npm/appwrite@13.0.0"></script>
     <script src="./progress.js"></script>
     <script src="./animation.js"></script>
+
     <script src="./app.js"></script>
   </body>
 </html>

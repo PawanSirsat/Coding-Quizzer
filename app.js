@@ -3,6 +3,8 @@ const questionContainer = document.getElementById('question-container')
 const form = document.getElementById('quiz-form')
 const sliderLabel = document.querySelector('#slidertext')
 const progressContainers = document.getElementsByClassName('progress-container')
+const resultLink = document.getElementById('studentListLink')
+const quizlink = document.getElementById('quizlink')
 
 let quizData
 let currentQuestionIndex = 0
@@ -126,6 +128,12 @@ function displayQuestion(questionIndex) {
         `
   questionContainer.innerHTML = questionHTML
   console.log('Timer ' + timer)
+  setTimeout(function () {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth',
+    })
+  }, 100) // Adjust the delay (in milliseconds) as needed
   document.getElementById('popup').style.display = 'none'
 
   document.getElementById('btn3').addEventListener('click', function () {
@@ -326,6 +334,8 @@ function startAgain() {
   form.reset()
   result.style.display = 'none'
   form.style.display = 'block'
+  resultLink.classList.remove('disable-link')
+  quizlink.classList.remove('disable-link')
   // Enable the checkbox
   document.getElementById('quiz-slider').removeAttribute('disabled')
 }
@@ -338,5 +348,13 @@ function endQuiz() {
 document.getElementById('quiz-form').addEventListener('submit', function (e) {
   e.preventDefault()
   document.getElementById('quiz-slider').setAttribute('disabled', 'disabled')
+  resultLink.classList.add('disable-link')
+  quizlink.classList.add('disable-link')
   startQuiz()
+  setTimeout(function () {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth',
+    })
+  }, 100) // Adjust the delay (in milliseconds) as needed
 })
