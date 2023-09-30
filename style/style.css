@@ -193,7 +193,7 @@ input[type='submit']:hover {
 }
 
 .image-container {
-  animation: blink-shadow 2s infinite; /* 10-second loop */
+  animation: blink-shadow 4s infinite; /* 10-second loop */
 }
 
 @keyframes blink-shadow {
