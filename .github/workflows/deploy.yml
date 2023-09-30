@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # Change this to the branch you want to deploy from
+      - main
 
 jobs:
   deploy:
@@ -13,19 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Generate Environment Config
+      - name: Generate Firebase Configuration
         run: |
-          echo "window.env = {" > env-config.js && \
-          echo "  FIREBASE_API_KEY: '$FIREBASE_API_KEY'," >> env-config.js && \
-          echo "  FIREBASE_AUTH_DOMAIN: '$FIREBASE_AUTH_DOMAIN'," >> env-config.js && \
-          echo "  FIREBASE_PROJECT_ID: '$FIREBASE_PROJECT_ID'," >> env-config.js && \
-          echo "  FIREBASE_STORAGE_BUCKET: '$FIREBASE_STORAGE_BUCKET'," >> env-config.js && \
-          echo "  FIREBASE_MESSAGING_SENDER_ID: '$FIREBASE_MESSAGING_SENDER_ID'," >> env-config.js && \
-          echo "  FIREBASE_APP_ID: '$FIREBASE_APP_ID'" >> env-config.js && \
-          echo "};" >> env-config.js
+          echo "export default {" > firebaseConfig.js && \
+          echo "  apiKey: '$FIREBASE_API_KEY'," >> firebaseConfig.js && \
+          echo "  authDomain: '$FIREBASE_AUTH_DOMAIN'," >> firebaseConfig.js && \
+          echo "  projectId: '$FIREBASE_PROJECT_ID'," >> firebaseConfig.js && \
+          echo "  storageBucket: '$FIREBASE_STORAGE_BUCKET'," >> firebaseConfig.js && \
+          echo "  messagingSenderId: '$FIREBASE_MESSAGING_SENDER_ID'," >> firebaseConfig.js && \
+          echo "  appId: '$FIREBASE_APP_ID'" >> firebaseConfig.js && \
+          echo "};" >> firebaseConfig.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: . # Publish the current directory
+          publish_dir: .
