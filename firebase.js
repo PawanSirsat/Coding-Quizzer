@@ -35,7 +35,12 @@ const studentListLink = document.getElementById('studentListLink')
 
 studentListLink.addEventListener('click', async (e) => {
   console.log('Show Result :')
-
+  var x = document.getElementById('myTopnav')
+  if (x.className === 'topnav') {
+    x.className += ' responsive'
+  } else {
+    x.className = 'topnav'
+  }
   document.getElementById('quiz-form').style.display = 'none'
   const resultContainer = document.getElementById('results-container')
   resultContainer.innerHTML = ''

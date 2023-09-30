@@ -59,8 +59,6 @@
             <option value="javascript">JavaScript</option>
             <option value="python">Python</option>
             <option value="java">Java</option>
-
-            <!-- Add more language options as needed -->
           </select>
 
           <select id="quiz-type" name="quiz-type">
@@ -80,8 +78,11 @@
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </select>
-          <input type="text" id="name" placeholder="Name" />
-          <input type="submit" id="start" value="Start Quizz" />
+
+          <input type="text" id="name" placeholder="Enter Name" />
+
+          <input type="submit" id="start" value="Start Quiz" disabled />
+          <!-- Initially disabled -->
         </form>
         <!-- <div class="progress-container">
           <div class="progress-bar" id="progress-bar"></div>
@@ -96,6 +97,12 @@
       document
         .getElementById('quizlink')
         .addEventListener('click', function () {
+          var x = document.getElementById('myTopnav')
+          if (x.className === 'topnav') {
+            x.className += ' responsive'
+          } else {
+            x.className = 'topnav'
+          }
           document.getElementById('quiz-form').style.display = 'block'
           const resultContainer = document.getElementById('results-container')
           resultContainer.innerHTML = ''
@@ -118,7 +125,7 @@
         }
       }
     </script>
-    <script></script>
+    <script src="./validate.js"></script>
     <script type="module" src="./firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/appwrite@13.0.0"></script>
     <script src="./progress.js"></script>
