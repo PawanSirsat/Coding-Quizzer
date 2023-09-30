@@ -128,11 +128,19 @@ label {
   margin-bottom: 5px;
 }
 
-input[type='text'],
 textarea,
 select {
   display: block;
   width: 97%;
+  padding: 13px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+input[type='text'] {
+  display: block;
+  width: 85%;
   padding: 13px;
   margin-bottom: 12px;
   border: 1px solid #ccc;
@@ -173,6 +181,15 @@ input[type='submit']:hover {
 
 #result-container {
   display: none;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+}
+#results-container {
+  display: none;
+  text-align: left; /* Align content to the left */
+
   background-color: #fff;
   border-radius: 5px;
   padding: 20px;
@@ -286,4 +303,30 @@ input[type='submit']:hover {
 /* Style the emoji icons */
 .navbar-brand span {
   margin: 0 5px;
+}
+
+/* Define CSS classes for styling list items */
+.student-list-item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  background-color: #f8f8f8;
+  list-style-type: none;
+}
+
+/* Style specific parts of the list item text */
+.student-name {
+  font-weight: bold;
+}
+
+.student-score {
+  color: green;
+}
+
+.student-correct {
+  color: blue;
+}
+
+.student-wrong {
+  color: red;
 }

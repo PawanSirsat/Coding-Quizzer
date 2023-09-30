@@ -314,6 +314,9 @@ function displayNextQuestion() {
               <button type="button" class="btncss" onclick="startAgain()">Start Again</button>
     `
     result.innerHTML = innerHTML
+    const uname = document.getElementById('name').value
+
+    window.addToFireBase(uname, correct + wrong, correct, wrong)
     // alert('No more questions.')
   }
 }

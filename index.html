@@ -28,8 +28,8 @@
         Coding Quiz
         <span style="vertical-align: middle; font-size: 20px">🚀</span>
       </a>
-      <a href="#news">Programming Quiz</a>
-      <a href="#contact">Competitive Quiz</a>
+      <a id="quizlink" href="#news">Programming Quiz</a>
+      <a id="studentListLink" href="#contact">Results</a>
 
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
@@ -80,7 +80,7 @@
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </select>
-
+          <input type="text" id="name" placeholder="Name" />
           <input type="submit" id="start" value="Start Quizz" />
         </form>
         <!-- <div class="progress-container">
@@ -88,10 +88,19 @@
         </div> -->
         <div id="question-container"></div>
         <div id="result-container"></div>
+        <div id="results-container"></div>
       </div>
     </div>
 
     <script>
+      document
+        .getElementById('quizlink')
+        .addEventListener('click', function () {
+          document.getElementById('quiz-form').style.display = 'block'
+          const resultContainer = document.getElementById('results-container')
+          resultContainer.innerHTML = ''
+          resultContainer.style.display = 'none'
+        })
       function myFunction() {
         var x = document.getElementById('myTopnav')
         if (x.className === 'topnav') {
@@ -101,6 +110,9 @@
         }
       }
     </script>
+    <script></script>
+    <script type="module" src="./firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@13.0.0"></script>
     <script src="./progress.js"></script>
     <script src="./animation.js"></script>
     <script src="./app.js"></script>
