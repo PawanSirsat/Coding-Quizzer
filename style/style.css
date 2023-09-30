@@ -31,14 +31,21 @@ a {
   font-size: 30px;
   padding: 3px 0px;
 }
+.theme-dark .aw-mobile-header,
+.aw-mobile-header.theme-dark .topnav {
+  --p-mobile-header-border-color: rgba(255, 255, 255, 0.1);
+}
+
 .topnav {
   position: fixed;
   top: 0;
   width: 100%;
   overflow: hidden;
   z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Use border-bottom for the white bottom border */
   backdrop-filter: blur(4px); /* Adjust the blur value as needed */
   /* Adjust the background color and opacity as needed */
+  transition: transform 0.3s ease;
 }
 
 .topnav a {
