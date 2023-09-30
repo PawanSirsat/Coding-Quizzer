@@ -166,7 +166,7 @@ input[type='text'] {
 }
 
 input[type='submit'] {
-  background-color: #007bff;
+  background-color: #fd356e;
   color: #fff;
   padding: 10px 40px;
   width: 97%;
@@ -220,7 +220,7 @@ input[type='submit']:hover {
 }
 #btn {
   display: block;
-  background-color: #19c658;
+  background-color: #fd356e;
 
   color: #fff;
   border: none;
@@ -234,7 +234,7 @@ input[type='submit']:hover {
 }
 #btn2 {
   display: none;
-  background-color: #007bff;
+  background-color: #fd356e;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -248,7 +248,7 @@ input[type='submit']:hover {
 
 #btn3 {
   display: inline-block;
-  background-color: #f16868;
+  background-color: #4d4d4d;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -299,7 +299,7 @@ input[type='submit']:hover {
   border-radius: 5px; /* Rounded corners for the border */
 }
 .btncss {
-  background-color: #007bff;
+  background-color: #fd356e;
   color: #fff;
   border: none;
   padding: 10px 20px;
