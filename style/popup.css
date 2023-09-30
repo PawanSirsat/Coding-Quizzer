@@ -15,12 +15,13 @@
 
 /* Styles for the popup content */
 .popup-content {
-  background-color: #fff;
+  color: white;
+  background-color: rgb(25, 25, 28);
   max-width: 290px;
   padding: 20px;
   border-radius: 5px;
   position: relative;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(232, 230, 230, 0.3);
   text-align: center;
 }
 
