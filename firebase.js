@@ -40,6 +40,14 @@ studentListLink.addEventListener('click', async (e) => {
   const resultContainer = document.getElementById('results-container')
   resultContainer.innerHTML = ''
   resultContainer.style.display = 'block'
+  //None to result
+  const result = document.getElementById('result-container')
+  result.innerHTML = ''
+  result.style.display = 'none'
+  //None
+  const que = document.getElementById('question-container')
+  que.innerHTML = ''
+  que.style.display = 'none'
 
   try {
     // Retrieve student data and add it to 'result-container'

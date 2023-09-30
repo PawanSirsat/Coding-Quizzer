@@ -100,6 +100,14 @@
           const resultContainer = document.getElementById('results-container')
           resultContainer.innerHTML = ''
           resultContainer.style.display = 'none'
+          //None to result
+          const result = document.getElementById('result-container')
+          result.innerHTML = ''
+          result.style.display = 'none'
+          //None to question
+          const que = document.getElementById('question-container')
+          que.innerHTML = ''
+          que.style.display = 'none'
         })
       function myFunction() {
         var x = document.getElementById('myTopnav')
@@ -111,10 +119,10 @@
       }
     </script>
     <script></script>
-    <script type="module" src="./script/firebase.js"></script>
+    <script type="module" src="./firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/appwrite@13.0.0"></script>
-    <script src="./script/progress.js"></script>
-    <script src="./script/animation.js"></script>
-    <script src="./script/app.js"></script>
+    <script src="./progress.js"></script>
+    <script src="./animation.js"></script>
+    <script src="./app.js"></script>
   </body>
 </html>
