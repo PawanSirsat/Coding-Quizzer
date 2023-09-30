@@ -57,7 +57,7 @@ a {
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 11px 18px;
+  padding: 15px 18px;
   text-decoration: none;
   font-size: 18px;
 }
@@ -88,7 +88,7 @@ a {
 
 @media screen and (max-width: 600px) {
   .topnav.responsive {
-    position: relative;
+    position: absolute;
   }
   .topnav.responsive .icon {
     position: absolute;
