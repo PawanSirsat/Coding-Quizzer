@@ -1,6 +1,7 @@
 .progress-container {
   width: 100%;
   max-width: 951px;
+  margin-bottom: 12px;
   background-color: #ccc;
   border-radius: 10px;
   overflow: hidden;
@@ -9,7 +10,7 @@
 .progress-bar {
   width: 0;
   height: 30px;
-  background-color: #007bff;
+  background-color: #fd356e;
 }
 
 .feedback {
@@ -32,7 +33,7 @@
 
 /* Style for error feedback (you can customize these styles) */
 .feedback.error {
-  background-color: #f44336; /* Red background for error */
+  background-color: #3f3f3f; /* Red background for error */
   color: #fff; /* White text for error */
-  border-color: #d32f2f; /* Border color for error */
+  border-color: #efe9e9; /* Border color for error */
 }

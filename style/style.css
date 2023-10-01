@@ -33,7 +33,7 @@ a {
 
 #fon {
   font-size: 30px;
-  padding: 3px 0px;
+  padding: 19px 16px;
 }
 .theme-dark .aw-mobile-header,
 .aw-mobile-header.theme-dark .topnav {
@@ -57,9 +57,9 @@ a {
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 15px 18px;
+  padding: 34px 12px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .topnav a:hover {
