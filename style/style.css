@@ -1,4 +1,15 @@
 /* CSS to enable smooth scrolling */
+body::-webkit-scrollbar {
+  width: 1em;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #f2f2f2;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
 
 /* Reset some default browser styles */
 body,
@@ -120,7 +131,7 @@ body {
   background-color: rgb(25, 25, 28);
 }
 .center-container {
-  filter: drop-shadow(0px 0px 13px rgba(253, 53, 110, 0.9));
+  filter: drop-shadow(0px 0px 8px rgba(235, 167, 185, 0.5));
   position: absolute;
   margin: 11px;
   padding: 25px;
@@ -235,12 +246,12 @@ input[type='submit']:hover {
 #results-container {
   display: none;
   text-align: left; /* Align content to the left */
-
-  background-color: #fff;
+  overflow-x: auto;
+  height: 300px;
+  background-color: #4d4c4c;
   border-radius: 5px;
-  padding: 20px;
   margin-top: 20px;
-  background-color: rgb(25, 25, 28);
+  font-family: Arial, Helvetica, sans-serif;
 }
 .btncontainer {
   display: inline-flex;
@@ -353,33 +364,63 @@ input[type='submit']:hover {
 }
 
 /* Define CSS classes for styling list items */
-.student-list-item {
+
+/* Style the table */
+
+#results-container table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Style table headers */
+#results-container th {
+  position: sticky;
+  top: 0;
+  color: rgb(234, 232, 232);
+  text-align: left;
   padding: 10px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  color: white;
-  background-color: rgb(25, 25, 28);
-  list-style-type: none;
+  overflow: hidden;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgb(42, 40, 45, 69%);
+
+  backdrop-filter: blur(2px); /* Adjust the blur value as needed */
+  /* Adjust the background color and opacity as needed */
+  transition: transform 0.3s ease;
 }
 
-/* Style specific parts of the list item text */
-.student-name {
-  font-weight: bold;
+/* Style table rows */
+#results-container tr {
+  color: black;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.student-score {
-  font-weight: bold;
-  color: green;
+/* Style table cells */
+#results-container td {
+  padding: 10px;
 }
 
-.student-correct {
-  font-weight: bold;
-
-  color: blue;
+/* Style even rows with a different background color */
+#results-container tr:nth-child(even) {
+  background-color: #c5c3c3;
 }
 
-.student-wrong {
-  font-weight: bold;
+/* Style odd rows with a different background color */
+#results-container tr:nth-child(odd) {
+  background-color: #cfcdcd;
+}
 
-  color: red;
+#results-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Style scrollbar thumb */
+#results-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+/* Style scrollbar track */
+#results-container::-webkit-scrollbar-track {
+  background-color: #f2f2f2;
 }

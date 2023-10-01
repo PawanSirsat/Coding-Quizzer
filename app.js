@@ -324,7 +324,7 @@ function displayNextQuestion() {
     result.innerHTML = innerHTML
     const uname = document.getElementById('name').value
 
-    window.addToFireBase(uname, correct + wrong, correct, wrong)
+    window.addToFireBase(uname, correct, correct, wrong)
     // alert('No more questions.')
   }
 }

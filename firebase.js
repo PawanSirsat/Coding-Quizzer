@@ -57,38 +57,56 @@ studentListLink.addEventListener('click', async (e) => {
   try {
     // Retrieve student data and add it to 'result-container'
     const querySnapshot = await getDocs(collection(db, 'QuizDataBase'))
-    querySnapshot.forEach((doc) => {
-      const studentData = doc.data()
-      const listItem = document.createElement('li')
-      listItem.classList.add('student-list-item') // Add the main list item class
 
-      // Create and style individual parts of the list item text
-      const nameElement = document.createElement('span')
-      nameElement.classList.add('student-name')
-      nameElement.textContent = `Name: ${studentData.name}, `
+    // Create a table element
+    const table = document.createElement('table')
 
-      const scoreElement = document.createElement('span')
-      scoreElement.classList.add('student-score')
-      scoreElement.textContent = `Score: ${studentData.score}, `
+    // Create a table header row
+    const headerRow = document.createElement('tr')
 
-      const correctElement = document.createElement('span')
-      correctElement.classList.add('student-correct')
-      correctElement.textContent = `Correct: ${studentData.right}, `
+    // Define the table headers
+    const headers = ['Name', 'Score', 'Correct', 'Wrong']
 
-      const wrongElement = document.createElement('span')
-      wrongElement.classList.add('student-wrong')
-      wrongElement.textContent = `Wrong: ${studentData.wrong}`
-
-      // Append styled elements to the list item
-      listItem.appendChild(nameElement)
-      listItem.appendChild(scoreElement)
-      listItem.appendChild(correctElement)
-      listItem.appendChild(wrongElement)
-
-      resultContainer.appendChild(listItem) // Append the list item to 'result-container'
+    headers.forEach((headerText) => {
+      const headerCell = document.createElement('th')
+      headerCell.textContent = headerText
+      headerRow.appendChild(headerCell)
     })
 
-    // ...
+    // Append the header row to the table
+    table.appendChild(headerRow)
+
+    querySnapshot.forEach((doc) => {
+      const studentData = doc.data()
+
+      // Create a table row for each student
+      const row = document.createElement('tr')
+
+      // Create table data cells for each piece of student information
+      const nameCell = document.createElement('td')
+      nameCell.textContent = studentData.name
+
+      const scoreCell = document.createElement('td')
+      scoreCell.textContent = studentData.score
+
+      const correctCell = document.createElement('td')
+      correctCell.textContent = studentData.right
+
+      const wrongCell = document.createElement('td')
+      wrongCell.textContent = studentData.wrong
+
+      // Append cells to the row
+      row.appendChild(nameCell)
+      row.appendChild(scoreCell)
+      row.appendChild(correctCell)
+      row.appendChild(wrongCell)
+
+      // Append the row to the table
+      table.appendChild(row)
+    })
+
+    // Append the table to the 'result-container'
+    resultContainer.appendChild(table)
   } catch (error) {
     console.log('Error ' + error)
   }
