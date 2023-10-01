@@ -120,14 +120,26 @@ body {
   background-color: rgb(25, 25, 28);
 }
 .center-container {
+  animation: blink-shadow2 15s infinite; /* 10-second loop */
+
   position: absolute;
   margin: 11px;
   padding: 25px;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgb(241 234 234 / 20%);
+  box-shadow: 2px 2px 13px rgba(253, 53, 110, 0.1);
   text-align: center;
   max-width: 100%;
   background-color: rgb(25, 25, 28);
+}
+
+@keyframes blink-shadow2 {
+  0%,
+  100% {
+    filter: drop-shadow(2px 2px 13px rgba(253, 53, 110, 0.1));
+  }
+  50% {
+    filter: drop-shadow(4px 4px 18px rgba(253, 53, 110, 0.9));
+  }
 }
 
 /* Form styles (unchanged from your original CSS) */
@@ -174,7 +186,6 @@ input[type='submit'] {
   color: #fff;
   padding: 10px 40px;
   width: 97%;
-
   border: none;
   border-radius: 3px;
   font-size: 16px;
@@ -193,7 +204,7 @@ input[type='submit']:hover {
 }
 
 .image-container {
-  animation: blink-shadow 4s infinite; /* 10-second loop */
+  filter: drop-shadow(4px 4px 16px rgba(253, 53, 110, 0.9));
 }
 
 @keyframes blink-shadow {
