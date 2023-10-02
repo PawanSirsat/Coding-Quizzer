@@ -35,9 +35,29 @@
 }
 
 .dropdown a:hover {
-  background-color: #ddd;
+  background-color: transparent;
 }
 
 .show {
   display: block;
+}
+.dropdown-menu {
+  color: #e1e1e2;
+  background-color: transparent;
+  backdrop-filter: blur(2px);
+  transition: transform 0.3s ease;
+  background-clip: padding-box;
+  border: 1px solid rgba(164, 163, 163, 0.15);
+}
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #d3d4d4;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
 }

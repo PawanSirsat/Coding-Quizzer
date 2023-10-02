@@ -71,6 +71,7 @@ a {
   padding-right: 0.5rem;
   padding-left: 4.5rem;
 }
+
 .navstyle {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Use border-bottom for the white bottom border */
   backdrop-filter: blur(4px); /* Adjust the blur value as needed */

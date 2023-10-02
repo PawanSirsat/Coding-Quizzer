@@ -5,6 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🚀Coding Quizz</title>
+  <style>
+    .dropdown a:hover {
+      background-color: transparent;
+    }
+  </style>
   <!-- Add Bootstrap CSS (use a CDN or host it locally) -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -48,6 +53,7 @@
         <li class="nav-item">
           <a class="nav-link" id="studentListLink" href="#">Results</a>
         </li>
+
         <!-- Add a dropdown item with sub-menu -->
         <li class="nav-item dropdown" id="dropid">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -57,6 +63,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" id="addQuestion" href="#">Add Question</a>
             <a class="dropdown-item" id="addlang" href="#">Add Language</a>
+            <a class="dropdown-item" id="allQue" href="#">All Questions</a>
           </div>
         </li>
       </ul>
