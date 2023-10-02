@@ -4,6 +4,7 @@ const form = document.getElementById('quiz-form')
 const sliderLabel = document.querySelector('#slidertext')
 const progressContainers = document.getElementsByClassName('progress-container')
 const resultLink = document.getElementById('studentListLink')
+const dropmenu = document.getElementById('dropid')
 const quizlink = document.getElementById('quizlink')
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js'
 import {
@@ -385,6 +386,8 @@ function startAgain() {
   form.style.display = 'block'
   resultLink.classList.remove('disable-link')
   quizlink.classList.remove('disable-link')
+  dropmenu.classList.remove('disable-link')
+
   // Enable the checkbox
   document.getElementById('quiz-slider').removeAttribute('disabled')
 }
@@ -401,6 +404,7 @@ document.getElementById('quiz-form').addEventListener('submit', function (e) {
   document.getElementById('quiz-slider').setAttribute('disabled', 'disabled')
   resultLink.classList.add('disable-link')
   quizlink.classList.add('disable-link')
+  dropmenu.classList.add('disable-link')
   startQuiz()
   setTimeout(function () {
     window.scrollTo({
