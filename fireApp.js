@@ -78,12 +78,20 @@ async function loadQuizData(language, difficulty) {
   try {
     const data = await getFireBaseJSON(language, difficulty)
     console.log('Data Loaded')
+    console.log(data)
 
     data.forEach((doc) => {
       const JSONData = doc.data().questionData
       importData.push(JSONData)
     })
-    console.log(importData)
+
+    if (importData.length === 0) {
+      dispFeedback(`Questions not found for ${language}`, 'error')
+
+      setTimeout(function () {
+        location.reload()
+      }, 2000) // 4000 milliseconds = 4 seconds
+    }
 
     //Filter By Difficulty Level
     quizData = importData
@@ -144,10 +152,11 @@ function displayQuestion(questionIndex) {
   ${shuffledOptions
     .map(
       (option, index) => `
-        <div class="option">
-          <input type="radio" name="answer" value="${index}" id="option${index}" />
-          <label for="option${index}">${option}</label>
-        </div>`
+       <label class="option" for="option${index}">
+  <input type="radio" name="answer" value="${index}" id="option${index}" />
+  ${option}
+</label>
+`
     )
     .join('')}
 </div>
@@ -273,6 +282,12 @@ function displayFeedback(message, className) {
   feedbackContainer.classList.add('feedback', className)
   feedbackContainer.style.display = 'block'
 }
+function dispFeedback(message, className) {
+  const feedbackContainer = document.getElementById('feedback-cont')
+  feedbackContainer.textContent = message
+  feedbackContainer.classList.add('feedback', className)
+  feedbackContainer.style.display = 'block'
+}
 function checkAnswer(questionIndex) {
   console.log('Check')
   const progressBar = document.getElementById('progress-bar')
@@ -380,6 +395,17 @@ function displayNextQuestion() {
   }
 }
 function startAgain() {
+  console.log('Data in startAgain : ')
+
+  console.log(importData)
+  console.log(quizData)
+
+  importData = []
+  quizData = importData
+  console.log('Remove')
+  console.log(importData)
+  console.log(quizData)
+
   currentQuestionIndex = 0
   form.reset()
   result.style.display = 'none'
@@ -390,6 +416,7 @@ function startAgain() {
 
   // Enable the checkbox
   document.getElementById('quiz-slider').removeAttribute('disabled')
+  document.getElementById('feedback-cont').style.display = 'none'
 }
 
 function endQuiz() {

@@ -25,6 +25,9 @@ label {
   margin-bottom: 12px;
   font-family: Arial, Helvetica, sans-serif;
 }
+#feedback-cont {
+  display: none;
+}
 .disable-link {
   pointer-events: none;
 }
@@ -125,7 +128,7 @@ body {
 /* Form styles */
 form {
   display: block;
-  text-align: left;
+  text-align: center;
 }
 
 label {
@@ -170,12 +173,16 @@ input[type='text'] {
 input[type='submit'] {
   background-color: #fd356e;
   color: #fff;
-  padding: 10px 40px;
   width: 97%;
+  padding: 13px;
   border: none;
+  border: 1px solid #ccc;
+
   border-radius: 3px;
   font-size: 16px;
   cursor: pointer;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }
 
 input[type='submit']:hover {
