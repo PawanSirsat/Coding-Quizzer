@@ -147,7 +147,7 @@ function displayQuestion(questionIndex) {
   <div class="progress-container">
           <div class="progress-bar" id="progress-bar"></div>
         </div>
-          <h2>${question.question}</h2>
+          <h5>${question.question}</h5>
           <ul>
   ${shuffledOptions
     .map(

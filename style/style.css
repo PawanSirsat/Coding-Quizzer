@@ -17,8 +17,7 @@ h1,
 p,
 ul,
 li,
-h2,
-label {
+h2 {
   color: white;
   margin: 0;
   padding: 0;
@@ -133,8 +132,9 @@ form {
 
 label {
   display: block;
-  font-weight: bold;
+  font-size: 16px;
   margin-bottom: 5px;
+  margin-left: 8px;
 }
 
 textarea,
@@ -215,7 +215,6 @@ input[type='submit']:hover {
   background-color: #fff;
   border-radius: 5px;
   padding: 20px;
-  margin-top: 20px;
   background-color: rgb(25, 25, 28);
 }
 
