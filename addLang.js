@@ -30,6 +30,7 @@ document.getElementById('addlang').addEventListener('click', () => {
   document.getElementById('add-form').style.display = 'none'
   document.getElementById('question-container').style.display = 'none'
   document.getElementById('popup3').style.display = 'none'
+  document.getElementById('results-container').style.display = 'none'
 
   document.getElementById('addedlang').addEventListener('click', function () {
     document.getElementById('popup3').style.display = 'flex'
