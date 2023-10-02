@@ -5,6 +5,8 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
+  doc,
 } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
 
 // Your web app's Firebase configuration
@@ -14,6 +16,21 @@ import firebaseConfig from './firebaseConfig.js'
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
+const docRef = doc(db, 'question', 'iFvontYgnRDynLeL741k')
+
+// Get the languages array from the document.
+const languages = await getDoc(docRef).then((doc) => doc.data().languages)
+
+const languageOptions = languages.map((language) => {
+  return `<option value="${language}">${language}</option>`
+})
+
+const selectElement = document.getElementById('language')
+const selectElement2 = document.getElementById('languageinput')
+
+selectElement.innerHTML += languageOptions.join('')
+selectElement2.innerHTML += languageOptions.join('')
+//
 const addToFireBase = async (uname, uscore, uright, uwrong) => {
   try {
     // Add the student record to Firebase
@@ -35,24 +52,16 @@ const studentListLink = document.getElementById('studentListLink')
 
 studentListLink.addEventListener('click', async (e) => {
   console.log('Show Result :')
-  var x = document.getElementById('myTopnav')
-  if (x.className === 'topnav') {
-    x.className += ' responsive'
-  } else {
-    x.className = 'topnav'
-  }
-  document.getElementById('quiz-form').style.display = 'none'
+
+  document.getElementById('slideid').style.display = 'none'
+  document.getElementById('quizform').style.display = 'none'
+  document.getElementById('result-container').style.display = 'none'
+  document.getElementById('add-form').style.display = 'none'
+  document.getElementById('question-container').style.display = 'none'
+  document.getElementById('addlangform').style.display = 'none'
+
   const resultContainer = document.getElementById('results-container')
-  resultContainer.innerHTML = ''
   resultContainer.style.display = 'block'
-  //None to result
-  const result = document.getElementById('result-container')
-  result.innerHTML = ''
-  result.style.display = 'none'
-  //None
-  const que = document.getElementById('question-container')
-  que.innerHTML = ''
-  que.style.display = 'none'
 
   try {
     // Retrieve student data and add it to 'result-container'

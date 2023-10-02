@@ -16,23 +16,6 @@ import firebaseConfig from './firebaseConfig.js'
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
-//Retrive Function
-async function getFireBaseJSON(lang, level) {
-  const JSONData = null
-
-  const querySnapshot = await getDocs(
-    query(
-      collection(db, 'question'),
-      where('questionData.lang', '==', lang),
-      where('questionData.level', '==', level)
-    )
-  )
-  querySnapshot.forEach((doc) => {
-    JSONData = doc.data().questionData
-    console.log(JSONData)
-  })
-  return JSONData
-}
 //Show Data
 document
   .getElementById('filter-form')

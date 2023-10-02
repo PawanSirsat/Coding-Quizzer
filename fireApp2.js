@@ -1,10 +1,6 @@
-const result = document.getElementById('result-container')
 const questionContainer = document.getElementById('question-container')
-const form = document.getElementById('quiz-form')
 const sliderLabel = document.querySelector('#slidertext')
 const progressContainers = document.getElementsByClassName('progress-container')
-const resultLink = document.getElementById('studentListLink')
-const quizlink = document.getElementById('quizlink')
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js'
 import {
   getFirestore,
@@ -27,7 +23,7 @@ const db = getFirestore(app)
 async function getFireBaseJSON(lang, level) {
   const querySnapshot = await getDocs(
     query(
-      collection(db, 'questions'),
+      collection(db, 'question'),
       where('questionData.lang', '==', lang),
       where('questionData.level', '==', level)
     )
@@ -105,8 +101,6 @@ function startQuiz() {
   const difficulty = document.getElementById('difficulty').value
   userlength = document.getElementById('quiz-type').value
 
-  console.log('Lan : ' + language)
-
   correct = 0
   wrong = 0
 
@@ -153,7 +147,8 @@ function displayQuestion(questionIndex) {
           </ul>
           <div id="feedback-container" class="feedback"></div>
           <div class="btncontainer">
-          <button type="button" id="btn">Submit</button>
+          <button type="button" id="btn" 
+           >Submit</button>
           <button type="button" id="btn2">Next Quiz</button>
           <button type="button" id="btn3">Exit</button>
           </div>
@@ -198,9 +193,9 @@ function displayQuestion(questionIndex) {
       container.style.display = 'block'
     }
     console.log('Progress Start')
-    startProgressBar()
   }
   currentQuestionIndex = questionIndex
+
   const submitButton = document.getElementById('btn')
   submitButton.addEventListener('click', function () {
     checkAnswer(currentQuestionIndex)
@@ -211,67 +206,7 @@ function displayQuestion(questionIndex) {
     displayNextQuestion(currentQuestionIndex)
   })
 }
-function disableQuizOptions() {
-  const optionContainers = document.querySelectorAll('.option')
 
-  optionContainers.forEach(function (container) {
-    const input = container.querySelector('input[type="radio"]')
-    input.disabled = true
-
-    // Optionally, you can add a class to visually indicate that the option is disabled
-    container.classList.add('disabled-option')
-  })
-}
-function startProgressBar() {
-  const progressBar = document.getElementById('progress-bar')
-  progressBar.style.width = '0%' // Initially set to 0%
-
-  let submitButtonClicked = false // Flag to check if the "Next" button was clicked
-  const animationDuration = 10000 // 10 seconds
-  const animationSteps = 400
-  const stepWidth = 50 / animationSteps
-
-  let currentWidth = 0
-  const animationInterval = animationDuration / animationSteps
-
-  const animation = setInterval(function () {
-    currentWidth += stepWidth
-    progressBar.style.width = currentWidth + '%'
-
-    if (currentWidth >= 100) {
-      clearInterval(animation)
-      if (!submitButtonClicked) {
-        console.log('Next')
-        // If the "Next" button was not clicked, move to the next question
-        timeout = true
-        displayFeedback('Time Out', 'error')
-        checkAnswer(currentQuestionIndex)
-      }
-    }
-  }, animationInterval)
-
-  const submitButton = document.getElementById('btn')
-  submitButton.addEventListener('click', function () {
-    submitButtonClicked = true
-    clearInterval(animation) // Stop the animation if the "Next" button is clicked
-  })
-}
-
-// Function to reset the progress bar
-// function resetProgressBar() {
-//   progressBar.style.width = '0'
-// }
-
-// Example: Start the progress bar for each quiz question
-
-// You can call startProgressBar() for each question in your quiz.
-
-function displayFeedback(message, className) {
-  const feedbackContainer = document.getElementById('feedback-container')
-  feedbackContainer.textContent = message
-  feedbackContainer.classList.add('feedback', className)
-  feedbackContainer.style.display = 'block'
-}
 function checkAnswer(questionIndex) {
   console.log('Check')
   const progressBar = document.getElementById('progress-bar')
@@ -285,10 +220,8 @@ function checkAnswer(questionIndex) {
   )
   if (selectedRadioButton) {
     selectedAnswerText = selectedRadioButton.nextElementSibling.textContent
-    // Now you can use the selectedAnswerText
     console.log(selectedAnswerText)
   } else {
-    // Handle the case where no option is selected
     console.log('Please select an option.')
   }
 
@@ -299,53 +232,23 @@ function checkAnswer(questionIndex) {
   } else {
     console.log('Option selected')
   }
-
-  const selectedAnswerElement = document.querySelector(
-    'input[name="answer"]:checked + label'
-  )
-
-  // Now selectedAnswerText will contain the text of the selected option.
-
-  console.log(!selectedAnswerText && selectedAnswerText)
-
   const correctAnswerText = quizData[questionIndex].ans
-  const correctAnswerOption = quizData[questionIndex].options.find(
-    (option) => option.correct
-  )
+
   document.getElementById('btn2').style.display = 'block'
   document.getElementById('btn').style.display = 'none'
   if (timeout == true) {
     disableQuizOptions()
     wrong++
     console.log('Time Out, selected, not submitted ')
-    const allLabels = document.querySelectorAll('label')
-    for (const label of allLabels) {
-      if (label.textContent === correctAnswerText) {
-        label.classList.add('correct')
-        break // Stop searching after finding the correct label
-      }
-    }
   } else if (!selectedAnswerText) {
     alert('Please select an answer.')
     return
   } else {
     if (selectedAnswerText === correctAnswerText && timeout == false) {
-      disableQuizOptions()
       console.log('In Time, selected, submitted ')
       correct++
-      selectedAnswerElement.classList.add('correct')
-      // displayFeedback('Correct answer!', 'green')
     } else {
-      disableQuizOptions()
       wrong++
-      selectedAnswerElement.classList.add('incorrect')
-      const allLabels = document.querySelectorAll('label')
-      for (const label of allLabels) {
-        if (label.textContent === correctAnswerText) {
-          label.classList.add('correct')
-          break // Stop searching after finding the correct label
-        }
-      }
     }
   }
 }
@@ -364,31 +267,15 @@ function displayNextQuestion() {
               <h3>Score :  ${correct} / ${correct + wrong} </h3>
               <h3 id="res">Correct : ${correct}</h3>
               <h3 id="res">Wrong : ${wrong}</h3>
-              <button type="button" class="btncss" id="startagain">Start Again</button>
+              <button type="button" class="btncss" onclick="startAgain()">Start Again</button>
     `
     result.innerHTML = innerHTML
     const uname = document.getElementById('name').value
 
     window.addToFireBase(uname, correct, correct, wrong)
-
-    const startagain = document.getElementById('startagain')
-    startagain.addEventListener('click', function () {
-      startAgain()
-    })
     // alert('No more questions.')
   }
 }
-function startAgain() {
-  currentQuestionIndex = 0
-  form.reset()
-  result.style.display = 'none'
-  form.style.display = 'block'
-  resultLink.classList.remove('disable-link')
-  quizlink.classList.remove('disable-link')
-  // Enable the checkbox
-  document.getElementById('quiz-slider').removeAttribute('disabled')
-}
-
 function endQuiz() {
   const questionContainer = document.getElementById('question-container')
   questionContainer.innerHTML = '<h2>Quiz completed!</h2>'
@@ -396,16 +283,5 @@ function endQuiz() {
 
 document.getElementById('quiz-form').addEventListener('submit', function (e) {
   e.preventDefault()
-  // document.getElementById('popup').style.display = 'none'
-
-  document.getElementById('quiz-slider').setAttribute('disabled', 'disabled')
-  resultLink.classList.add('disable-link')
-  quizlink.classList.add('disable-link')
   startQuiz()
-  setTimeout(function () {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth',
-    })
-  }, 100) // Adjust the delay (in milliseconds) as needed
 })
