@@ -152,10 +152,11 @@ function displayQuestion(questionIndex) {
   ${shuffledOptions
     .map(
       (option, index) => `
-       <label class="option" for="option${index}">
+     <div class="option">
   <input type="radio" name="answer" value="${index}" id="option${index}" />
-  ${option}
-</label>
+  <label for="option${index}">${option}</label>
+</div>
+
 `
     )
     .join('')}
@@ -189,6 +190,17 @@ function displayQuestion(questionIndex) {
 
   document.getElementById('btn3').addEventListener('click', function () {
     document.getElementById('popup').style.display = 'flex'
+  })
+  // Get all option divs
+  const optionDivs = document.querySelectorAll('.option')
+
+  // Add a click event listener to each option div
+  optionDivs.forEach((optionDiv) => {
+    optionDiv.addEventListener('click', () => {
+      // Check the corresponding radio button
+      const radioButton = optionDiv.querySelector('input[type="radio"]')
+      radioButton.checked = true
+    })
   })
 
   document.getElementById('closePopup').addEventListener('click', function () {
