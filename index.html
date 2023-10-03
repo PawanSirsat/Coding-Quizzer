@@ -54,6 +54,10 @@
             Quiz</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" id="allQue" data-toggle="collapse" data-target=".navbar-collapse" href="#">All
+            Questions</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" id="studentListLink" data-toggle="collapse" data-target=".navbar-collapse"
             href="#">Results</a>
         </li>
@@ -69,8 +73,8 @@
               Question</a>
             <a class="dropdown-item" id="addlang" data-toggle="collapse" data-target=".navbar-collapse" href="#">Add
               Language</a>
-            <a class="dropdown-item" id="allQue" data-toggle="collapse" data-target=".navbar-collapse" href="#">All
-              Questions</a>
+            <!-- <a class="dropdown-item" id="allQue" data-toggle="collapse" data-target=".navbar-collapse" href="#">All
+              Questions</a> -->
           </div>
         </li>
       </ul>
@@ -204,10 +208,13 @@
           <label for="languageinputque">Select a Language:</label>
           <select id="languageinputque" required>
             <option value="" disabled selected>Select language</option>
+            <option value="All-Language">All-Language</option>
           </select>
           <br />
           <label for="level">Select a Difficulty Level:</label>
           <select id="levelinput" required>
+            <option value="" disabled selected>Select Level</option>
+            <option value="All-Type">All Type</option>
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>

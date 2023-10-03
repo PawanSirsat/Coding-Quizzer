@@ -17,11 +17,23 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
 document.getElementById('allQue').addEventListener('click', async (e) => {
-  document.getElementById('pop3').style.display = 'flex'
+  // document.getElementById('pop3').style.display = 'flex'
 
-  document.getElementById('closePopup3').addEventListener('click', function () {
-    document.getElementById('pop3').style.display = 'none'
-  })
+  // document.getElementById('closePopup3').addEventListener('click', function () {
+  //   document.getElementById('pop3').style.display = 'none'
+  // })
+  document.getElementById('pop3').style.display = 'none'
+  document.getElementById('feedback-cont2').style.display = 'none'
+  //None
+  document.getElementById('slideid').style.display = 'none'
+  document.getElementById('quizform').style.display = 'none'
+  document.getElementById('result-container').style.display = 'none'
+  document.getElementById('add-form').style.display = 'none'
+  document.getElementById('question-container').style.display = 'none'
+  document.getElementById('addlangform').style.display = 'none'
+  document.getElementById('results-container').style.display = 'none'
+  //Block
+  document.getElementById('filterdata').style.display = 'block'
 })
 
 //Show Data
@@ -43,18 +55,58 @@ document
 
     // Create a reference to the cities collection
     try {
+      // const allData = await getDocs(collection(db, 'questions'))
+      // let count = 0
+      // allData.forEach((doc) => {
+      //   const studentData = doc.data().questionData
+      //   count++
+      // })
+      // console.log('All Ques : ' + count)
+
+      let querySnapshot
       // Retrieve student data and add it to 'result-container'
-      const querySnapshot = await getDocs(
-        query(
-          collection(db, 'questions'),
-          where('questionData.level', '==', selectedLevel),
-          where('questionData.lang', '==', selectedLanguage)
+      if (selectedLevel != 'All-Type' && selectedLanguage != 'All-Language') {
+        const custom = await getDocs(
+          query(
+            collection(db, 'questions'),
+            where('questionData.level', '==', selectedLevel),
+            where('questionData.lang', '==', selectedLanguage)
+          )
         )
-      )
+        querySnapshot = custom
+      } else if (
+        selectedLanguage == 'All-Language' &&
+        selectedLevel != 'All-Type'
+      ) {
+        const type = await getDocs(
+          query(
+            collection(db, 'questions'),
+            where('questionData.level', '==', selectedLevel)
+          )
+        )
+        querySnapshot = type
+      } else if (
+        selectedLanguage != 'All-Language' &&
+        selectedLevel == 'All-Type'
+      ) {
+        const lang = await getDocs(
+          query(
+            collection(db, 'questions'),
+            where('questionData.lang', '==', selectedLanguage)
+          )
+        )
+        querySnapshot = lang
+      } else {
+        const allData = await getDocs(collection(db, 'questions'))
+        querySnapshot = allData
+      }
+
+      let count = 0
       querySnapshot.forEach((doc) => {
         const studentData = doc.data().questionData
-        console.log(studentData)
+        count++
       })
+      console.log('Sorted Count : ' + count)
 
       const head = document.createElement('h3')
       head.textContent = `${selectedLanguage} ${selectedLevel} Questions`
@@ -75,18 +127,18 @@ document
         const ansText = document.createElement('h5')
         ansText.textContent = `Answer : ${studentData.ans}`
 
-        console.log('Que : ' + index)
-        console.log(studentData.question)
+        // console.log('Que : ' + index)
+        // console.log(studentData.question)
 
-        console.log('Option :')
+        // console.log('Option :')
         studentData.options.forEach((option) => {
-          console.log(option)
+          // console.log(option)
           const optionElement = document.createElement('option')
           optionElement.value = option
           optionElement.textContent = option
           selectElement.appendChild(optionElement)
         })
-        console.log('Append : ')
+        // console.log('Append : ')
         const spam = document.createElement('div')
         spam.classList.add('spaceQue')
 
@@ -102,6 +154,7 @@ document
     }
 
     document.getElementById('back').addEventListener('click', async (e) => {
+      e.preventDefault()
       //None
       document.getElementById('slideid').style.display = 'none'
       document.getElementById('quizform').style.display = 'none'
