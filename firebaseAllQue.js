@@ -57,11 +57,12 @@ document
       })
 
       const head = document.createElement('h3')
-      head.textContent = `${selectedLanguage} Questions`
+      head.textContent = `${selectedLanguage} ${selectedLevel} Questions`
 
       resultContainer.innerHTML = `<input id="back" type="submit" value="Back">
 `
       resultContainer.appendChild(head)
+      let index = 1
 
       querySnapshot.forEach((doc) => {
         const selectElement = document.createElement('select')
@@ -69,9 +70,12 @@ document
         const studentData = doc.data().questionData
 
         const questionText = document.createElement('h5')
-        questionText.textContent = studentData.question
+        questionText.textContent = `Que ${index} : ${studentData.question}`
 
-        console.log('Que :')
+        const ansText = document.createElement('h5')
+        ansText.textContent = `Answer : ${studentData.ans}`
+
+        console.log('Que : ' + index)
         console.log(studentData.question)
 
         console.log('Option :')
@@ -83,8 +87,15 @@ document
           selectElement.appendChild(optionElement)
         })
         console.log('Append : ')
+        const spam = document.createElement('div')
+        spam.classList.add('spaceQue')
+
         resultContainer.appendChild(questionText)
         resultContainer.appendChild(selectElement)
+        resultContainer.appendChild(ansText)
+        resultContainer.appendChild(spam)
+
+        index++
       })
     } catch (error) {
       console.log('Error ' + error)
