@@ -34,6 +34,7 @@ document
     var selectedLevel = document.getElementById('levelinput').value
     const resultContainer = document.getElementById('allquestion-container')
     resultContainer.style.display = 'block'
+
     document.getElementById('filter-form').reset()
     document.getElementById('filterdata').style.display = 'none'
 

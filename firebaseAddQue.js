@@ -22,6 +22,9 @@ addLink.addEventListener('click', () => {
   document.getElementById('quizform').style.display = 'none'
   document.getElementById('results-container').style.display = 'none'
   document.getElementById('addlangform').style.display = 'none'
+  const resultContainer2 = document.getElementById('allquestion-container')
+  resultContainer2.style.display = 'none'
+  document.getElementById('filterdata').style.display = 'none'
 
   const container = document.getElementById('add-form')
   container.style.display = 'block'

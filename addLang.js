@@ -31,6 +31,9 @@ document.getElementById('addlang').addEventListener('click', () => {
   document.getElementById('question-container').style.display = 'none'
   document.getElementById('popup3').style.display = 'none'
   document.getElementById('results-container').style.display = 'none'
+  const resultContainer2 = document.getElementById('allquestion-container')
+  resultContainer2.style.display = 'none'
+  document.getElementById('filterdata').style.display = 'none'
 
   document.getElementById('addedlang').addEventListener('click', function () {
     document.getElementById('popup3').style.display = 'flex'

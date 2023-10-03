@@ -102,7 +102,7 @@
               <label for="password">Password:</label>
               <input type="password" id="password" name="password" required>
             </div>
-            <div id="feedback-cont2" class="feedback">
+            <div id="feedback-cont2" class="feedback2">
             </div>
             <input type="submit" value="Login">
           </form>
@@ -187,6 +187,7 @@
         </div>
       </div>
       <div id="question-container"></div>
+      <div id="feedback-cont"></div>
       <div id="result-container"></div>
       <div id="results-container">
         <h2>Results</h2>
@@ -241,7 +242,9 @@
         document.getElementById('add-form').style.display = 'none'
         document.getElementById('slideid').style.display = 'block'
         document.getElementById('addlangform').style.display = 'none'
-
+        const resultContainer2 = document.getElementById('allquestion-container')
+        resultContainer2.style.display = 'none'
+        document.getElementById('filterdata').style.display = 'none'
         const resultContainer = document.getElementById('results-container')
         resultContainer.innerHTML = ''
         resultContainer.style.display = 'none'

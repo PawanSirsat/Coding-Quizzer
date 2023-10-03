@@ -87,7 +87,6 @@ async function loadQuizData(language, difficulty) {
 
     if (importData.length === 0) {
       dispFeedback(`Questions not found for ${language}`, 'error')
-
       setTimeout(function () {
         location.reload()
       }, 2000) // 4000 milliseconds = 4 seconds

@@ -40,3 +40,31 @@
   color: #cf2626; /* White text for error */
   border-color: #cd5858; /* Border color for error */
 }
+
+.feedback2 {
+  border: 2px solid #ccc; /* Border */
+  border-radius: 7px; /* Rounded corners */
+  padding: 10px; /* Padding inside the container */
+  margin-top: 10px; /* Margin from the top */
+  margin-bottom: 10px;
+  display: none; /* Initially hidden */
+  color: #333; /* Text color */
+  font-size: 16px; /* Font size */
+}
+
+/* Style for success feedback (you can customize these styles) */
+.feedback2.success {
+  background-color: #4caf50; /* Green background for success */
+  color: #fff; /* White text for success */
+  border-color: #45a049; /* Border color for success */
+}
+
+/* Style for error feedback (you can customize these styles) */
+.feedback2.error {
+  font-weight: bold;
+  background-color: rgb(81 81 81 / 10%) !important;
+  backdrop-filter: blur(4px); /* Adjust the blur value as needed */
+  transition: transform 0.3s ease;
+  color: #cf2626; /* White text for error */
+  border-color: #cd5858; /* Border color for error */
+}

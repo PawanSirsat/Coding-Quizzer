@@ -50,7 +50,7 @@ loginForm.addEventListener('submit', async (e) => {
   } catch (error) {
     const feedbackContainer = document.getElementById('feedback-cont2')
     feedbackContainer.textContent = 'Worng credentials'
-    feedbackContainer.classList.add('feedback', 'error')
+    feedbackContainer.classList.add('feedback2', 'error')
     feedbackContainer.style.display = 'block'
     // Handle errors (e.g., wrong email or password)
     const errorCode = error.code

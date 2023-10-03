@@ -62,6 +62,9 @@ studentListLink.addEventListener('click', async (e) => {
   document.getElementById('add-form').style.display = 'none'
   document.getElementById('question-container').style.display = 'none'
   document.getElementById('addlangform').style.display = 'none'
+  const resultContainer2 = document.getElementById('allquestion-container')
+  resultContainer2.style.display = 'none'
+  document.getElementById('filterdata').style.display = 'none'
 
   const resultContainer = document.getElementById('results-container')
   resultContainer.style.display = 'block'
