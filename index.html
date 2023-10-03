@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <script type="module" src="./addLang.js"></script>
   <script type="module" src="./firebaseAddQue.js"></script>
+  <script type="module" src="./firebaseAllQue.js"></script>
   <script type="module" src="./firebase.js"></script>
   <script type="module" src="./fireApp.js"></script>
 </head>
@@ -177,6 +178,27 @@
       <div id="results-container">
         <h2>Results</h2>
       </div>
+      <!-- Filter Data -->
+      <div id="filterdata">
+        <h2>Filter Quiz Data</h2>
+        <form id="filter-form">
+          <label for="languageinputque">Select a Language:</label>
+          <select id="languageinputque" required>
+            <option value="" disabled selected>Select language</option>
+          </select>
+          <br />
+          <label for="level">Select a Difficulty Level:</label>
+          <select id="levelinput" required>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select><br />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+      <div id="allquestion-container">
+      </div>
+
       <div id="addlangform">
         <h2>Add New Language</h2>
         <form id="create-language-form">

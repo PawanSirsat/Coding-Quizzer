@@ -27,9 +27,12 @@ const languageOptions = languages.map((language) => {
 
 const selectElement = document.getElementById('language')
 const selectElement2 = document.getElementById('languageinput')
+const selectElement3 = document.getElementById('languageinputque')
 
 selectElement.innerHTML += languageOptions.join('')
 selectElement2.innerHTML += languageOptions.join('')
+selectElement3.innerHTML += languageOptions.join('')
+
 //
 const addToFireBase = async (uname, uscore, uright, uwrong) => {
   try {

@@ -27,6 +27,27 @@ h2 {
 #feedback-cont {
   display: none;
 }
+#allquestion-container {
+  display: none;
+}
+#filterdata {
+  display: none;
+}
+
+#allquestion-container input[type='submit'] {
+  background-color: #fd356e;
+  color: #fff;
+  width: 20%;
+  padding: 13px;
+  margin-bottom: 20px;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
 .disable-link {
   pointer-events: none;
 }
