@@ -17,16 +17,11 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
 document.getElementById('allQue').addEventListener('click', async (e) => {
-  //None
-  document.getElementById('slideid').style.display = 'none'
-  document.getElementById('quizform').style.display = 'none'
-  document.getElementById('result-container').style.display = 'none'
-  document.getElementById('add-form').style.display = 'none'
-  document.getElementById('question-container').style.display = 'none'
-  document.getElementById('addlangform').style.display = 'none'
-  document.getElementById('results-container').style.display = 'none'
-  //Display
-  document.getElementById('filterdata').style.display = 'block'
+  document.getElementById('pop3').style.display = 'flex'
+
+  document.getElementById('closePopup3').addEventListener('click', function () {
+    document.getElementById('pop3').style.display = 'none'
+  })
 })
 
 //Show Data

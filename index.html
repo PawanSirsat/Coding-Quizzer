@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="./style/popup.css" />
   <link rel="stylesheet" href="./style/dropdown.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <script type="module" src="./firebaseAuth.js"></script>
   <script type="module" src="./addLang.js"></script>
   <script type="module" src="./firebaseAddQue.js"></script>
   <script type="module" src="./firebaseAllQue.js"></script>
@@ -87,22 +88,34 @@
           </label>
         </h2>
       </div>
-      <div id="feedback-cont" class="feedback">
+
+      <div id="pop3" class="popup3">
+        <div class="popup-content">
+          <span class="close-button" id="closePopup3">&times;</span>
+          <h3>Admin Login</h3>
+          <form id="adminlogin-form">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required>
+            </div>
+            <div id="feedback-cont2" class="feedback">
+            </div>
+            <input type="submit" value="Login">
+          </form>
+        </div>
       </div>
-
       <div id="quizform">
-
         <form id="quiz-form">
-
           <h2>Programming Quiz</h2>
-
           <select id="language" name="language">
             <option value="none" selected disabled hidden>
               Select a Language
             </option>
-
           </select>
-
           <select id="quiz-type" name="quiz-type">
             <option value="none" selected disabled hidden>
               Select Quiz Type

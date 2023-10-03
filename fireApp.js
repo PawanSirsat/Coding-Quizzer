@@ -175,7 +175,6 @@ function displayQuestion(questionIndex) {
     <p>If you exit, any unsaved progress will be lost.</p>
     <button id="reloadPage">Exit Quiz</button>
 </div>
-
     </div>
         `
   questionContainer.innerHTML = questionHTML

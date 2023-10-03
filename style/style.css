@@ -27,6 +27,9 @@ h2 {
 #feedback-cont {
   display: none;
 }
+#feedback-cont2 {
+  display: none;
+}
 #allquestion-container {
   display: none;
 }
@@ -173,6 +176,20 @@ select {
   background-color: rgb(25, 25, 28);
 }
 input[type='text'] {
+  display: block;
+  width: 97%;
+  padding: 13px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  color: white;
+  background-color: rgb(25, 25, 28);
+}
+input[type='password'] {
   display: block;
   width: 97%;
   padding: 13px;
