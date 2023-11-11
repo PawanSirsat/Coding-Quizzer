@@ -9,7 +9,7 @@
 
 // export default firebaseConfig
 const firebaseConfig = {
-  apiKey: process.env.API,
+  apiKey: 'AIzaSyBIQ3-9-k5182sd3QM4cxo-Zk3mZd3y2Sc',
   authDomain: 'student-7edee.firebaseapp.com',
   projectId: 'student-7edee',
   storageBucket: 'student-7edee.appspot.com',
